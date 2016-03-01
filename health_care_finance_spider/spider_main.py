@@ -24,7 +24,6 @@ class SpiderMain(object):
                 count = count + 1
             except:
                 print 'craw %s html failed'%(new_url)
-        print "*** datas ***:%s"%self.outputer.datas
         print "begin write data into file"
         self.outputer.output_html()
 

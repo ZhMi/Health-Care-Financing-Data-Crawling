@@ -27,11 +27,7 @@ class HtmlParser(object):
         res_data = {}
         # url
         res_data['url'] = page_url
-        # <dd class="lemmaWgt-lemmaTitle-title"><h1>Python</h1>
-        # title_node = soup.find('dd',class_ = "lemmaWgt-lemmaTitle-title")
-        # <section class="module-basicpagetitle component">
-        # <section class="module-articleintroduction component bg-white">
-        # <section class="module-basicpagetitle component">
+
         try:
             title_node = soup.find('h2',class_ = "basic-title desktop-only")
             if title_node == None:
@@ -39,23 +35,17 @@ class HtmlParser(object):
                 title_node = soup.find('section', class_ ="module-basicpagetitle component")
 
             res_data['title'] = title_node.get_text()
-            print "*******  res_data_title: *******",res_data['title']
-            if res_data['title'] == None:
-                res_data['url'] == ""
-                res_data['title'] = "*"
-            # <div class = "lemma-summary">
-            # summary_node = soup.find('div',class_ = "lemma-summary")
+
             # <div class="bodytext-data">
             summary_node = soup.find('div',class_ = "bodytext-data")
             res_data['summary'] = summary_node.get_text()
-            print "*******  res_data_summary:   *******",res_data['summary']
-            if res_data['summary'] == None:
-                res_data['summary'] = "*"
-            print "********** Web data ***********"
-            print res_data
+
         except:
-            print"*********No artitle**********"
+            print"********* No artitle  **********"
+            res_data['title'] = ''
+            res_data['summary'] = ''
         finally:
+            print res_data
             return res_data
 
     def parse(self,page_url,html_cont):
@@ -65,7 +55,5 @@ class HtmlParser(object):
         soup = BeautifulSoup(html_cont,'html.parser',from_encoding = 'utf-8')
 
         new_urls = self._get_new_urls(page_url,soup)
-
         new_data = self._get_new_data(page_url,soup)
-
         return new_urls,new_data
