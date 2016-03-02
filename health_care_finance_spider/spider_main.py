@@ -23,10 +23,9 @@ class SpiderMain(object):
                     break
                 count = count + 1
             except:
-                print 'craw %s html failed'%new_url
+                print 'craw %s html failed'%(new_url)
         print "begin write data into file"
-
-        self.outputer.write_csv_file()
+        self.outputer.output_html()
 
 if __name__ == "__main__":
     # root_url = "http://baike.baidu.com/view/21"
