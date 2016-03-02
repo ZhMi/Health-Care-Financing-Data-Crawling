@@ -1,4 +1,5 @@
 url,title,summary
+<<<<<<< HEAD
 https://home.kpmg.com/xx/en/home.html,,
 https://home.kpmg.com/xx/en/home/industries/healthcare.html,Healthcare,"With deep industry experience, insight and technical support, KPMG firms are among the leaders in delivering a broad range of audit, tax and advisory services to meet the unique needs of healthcare policy-makers, providers and payers.
 Every day our people do extraordinary things, they go above and beyond to ensure the work they do at KPMG inspires confidence and empowers change.
@@ -16,3 +17,10 @@ https://home.kpmg.com/xx/en/home/services/advisory.html,Advisory,"
 KPMG Advisory professionals work with you to cut through the complexity of today’s rapidly changing marketplace. We leverage the knowledge and skills across our global network of firms to develop practical recommendations designed to help you work smarter, grow faster and compete stronger. We are trusted advisors to the world’s organizations. They choose us because we are known for our talented people, technical expertise, deep industry insights and our ability to get the job done.
 "
 https://home.kpmg.com/xx/en/home/contacts/b/aidan-brennan.html,,
+=======
+https://home.kpmg.com/xx/en/home.html,,,,
+https://home.kpmg.com/xx/en/home/industries/healthcare.html,Healthcare,,,,
+https://home.kpmg.com/xx/en/home/industries/transport-logistics.html,Transport & Logistics,,,,
+https://home.kpmg.com/xx/en/home/services/advisory.html,Advisory,,,,
+https://home.kpmg.com/xx/en/home/contacts/b/aidan-brennan.html,,,,
+>>>>>>> origin/master
