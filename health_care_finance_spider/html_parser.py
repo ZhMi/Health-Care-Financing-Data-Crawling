@@ -24,7 +24,7 @@ class HtmlParser(object):
         return new_urls
 
     def _get_new_data(self,page_url,soup):
-        res_data = {}
+        res_data = []
         # url
         res_data['url'] = page_url
 
@@ -33,17 +33,15 @@ class HtmlParser(object):
             if title_node == None:
                 # <section class="module-tmpl-article-detail">
                 title_node = soup.find('section', class_ ="module-basicpagetitle component")
-
-            res_data['title'] = title_node.get_text()
-
+            res_data.append(title_node.get_text())
             # <div class="bodytext-data">
             summary_node = soup.find('div',class_ = "bodytext-data")
             res_data['summary'] = summary_node.get_text()
 
         except:
             print"********* No artitle  **********"
-            res_data['title'] = ''
-            res_data['summary'] = ''
+            res_data.append('')
+            res_data.append('')
         finally:
             print res_data
             return res_data
