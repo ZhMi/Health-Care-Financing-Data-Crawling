@@ -16,20 +16,28 @@ class extract_health_care_article(object):
         with open(self.kpmg_data_path,'rb') as f:
             reader = csv.reader(f)
             for line in reader:
-                line[3] = line[3].split()
+                for index in xrange(3):
+                    line[index+1] = line[index+1].lower().split()
                 self.article_list.append(line[:4])
             print self.article_list # ['url', 'main_title', 'second_title', 'publish_time']
 
-    def date_transform(self):
-        date_list = map(lambda x:[x[0],x[1]+x[2],x[3][5:]+x[3][1:2]+x[3][2:3]],self.article_list[1:]) # ['Thu', 'Jan', '01', '05:00:00', 'UTC', '2015']
-        return date_list
+    def data_pretreat(self):
+        data_list = map(lambda x:[x[0],list(set(x[1]+x[2])),x[3][5:]+ x[3][1:2] +x[3][2:3]],self.article_list[1:]) # ['Thu', 'Jan', '01', '05:00:00', 'UTC', '2015']
+        return data_list # ['2015', 'Aug', '01']
+
+    def data_filter(record,key_words):
+        # ret = list(set(a) ^ set(b))
+        intersection = list(set(record[1:2]) ^ list(set(key_words)))
+        return len(intersection)
 
 if __name__ == '__main__':
     object = extract_health_care_article()
     object.__init__()
     article_list = object.read_file()
-    date_list = object.date_transform()
-    print date_list
+    date_list = object.data_pretreat()
+    key_words = constant_config.key_words
+    conbine_list = map(lambda x: object.data_filter,key_words,date_list)
+
 
 
 
