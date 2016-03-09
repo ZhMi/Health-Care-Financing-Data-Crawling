@@ -4,14 +4,15 @@ __author__ = 'Zhmi'
 
 import constant_config
 import csv
+import datetime
 
 class extract_health_care_article(object):
 
     def __init__(self):
         self.kpmg_data_path = constant_config.kpmg_data_path
         self.article_list = []
-        self.date_dict = {'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,
-                          'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12} #date form: Wed Feb 25 14:00:00 UTC 2015
+        self.date_dict = {'jan':1,'feb':2,'mar':3,'apr':4,'may':5,'jun':6,
+                          'jul':7,'aug':8,'sep':9,'oct':10,'nov':11,'dec':12} #date form: Wed Feb 25 14:00:00 UTC 2015
     def read_file(self):
         with open(self.kpmg_data_path,'rb') as f:
             reader = csv.reader(f)
@@ -54,10 +55,26 @@ class extract_health_care_article(object):
         contain_topic_data = filter(lambda x: x[1] != 0,data_list)
         return contain_topic_data
 
+    def filter_record_belongs_particular_time(self,data_list):
+        for index in xrange(len(data_list)):
+            data_list[index][2][1] = self.date_dict[data_list[index][2][1]]
+            '''
+            d1 = datetime.datetime(2005, 2, 16)
+            d2 = datetime.datetime(2004, 12, 31)
+            print (d1 - d2).days
+            '''
+            year_num = int(data_list[index][2][0])
+            data_list[index][2][0] = year_num
+            day_num = int(data_list[index][2][2])
+            data_list[index][2][2] = day_num
+
+        return data_list
+
 if __name__ == '__main__':
     object = extract_health_care_article()
     object.__init__()
     article_list = object.read_file()
     filtered_data_list = object.data_pretreat()
     contain_topic_data = object.filter_contains_topic_data(filtered_data_list)
-    print "contain_topic_data:%s"%contain_topic_data
+    # print "contain_topic_data:%s"%contain_topic_data
+    object.filter_record_belongs_particular_time(contain_topic_data)
