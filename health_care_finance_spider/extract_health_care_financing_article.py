@@ -57,6 +57,7 @@ class extract_health_care_article(object):
 
     def filter_record_belongs_particular_time(self,data_list):
         for index in xrange(len(data_list)):
+
             data_list[index][2][1] = self.date_dict[data_list[index][2][1]]
             '''
             d1 = datetime.datetime(2005, 2, 16)
@@ -76,5 +77,5 @@ if __name__ == '__main__':
     article_list = object.read_file()
     filtered_data_list = object.data_pretreat()
     contain_topic_data = object.filter_contains_topic_data(filtered_data_list)
-    # print "contain_topic_data:%s"%contain_topic_data
+    print "contain_topic_data:%s"%contain_topic_data
     object.filter_record_belongs_particular_time(contain_topic_data)
