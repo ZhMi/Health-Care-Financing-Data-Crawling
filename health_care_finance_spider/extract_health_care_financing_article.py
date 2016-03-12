@@ -4,7 +4,6 @@ __author__ = 'Zhmi'
 
 import constant_config
 import csv
-import datetime
 
 class extract_health_care_article(object):
 

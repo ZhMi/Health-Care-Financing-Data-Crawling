@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="health_care_finance_spider.html_downloader.HtmlDownloader.items" />
+          <option value="health_care_finance_spider.pwc_article_crawl.first_article" />
         </list>
       </option>
     </inspection_tool>
